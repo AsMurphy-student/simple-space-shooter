@@ -19,4 +19,5 @@ shape = SubResource("CircleShape2D_irbu4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="player_collision"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

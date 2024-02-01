@@ -45,6 +45,8 @@ func enemy_timer_finished():
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(20.0, 70.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
-
+	
+	mob.add_to_group("enemies")
+	
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
