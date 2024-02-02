@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://kki5xo2mmo0e"]
+[gd_scene load_steps=5 format=3 uid="uid://kki5xo2mmo0e"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_byqlw"]
 [ext_resource type="Texture2D" uid="uid://cuo80kb721pws" path="res://Resources/enemy.png" id="1_kqko4"]
+[ext_resource type="PackedScene" uid="uid://ceqyk4mbs5cps" path="res://Scenes/Objects/enemy_bullet.tscn" id="2_d231c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irbu4"]
 radius = 16.0
@@ -10,6 +11,7 @@ radius = 16.0
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_byqlw")
+playerbullet_scene = ExtResource("2_d231c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kqko4")
@@ -21,5 +23,9 @@ shape = SubResource("CircleShape2D_irbu4")
 
 [node name="MoveTimer" type="Timer" parent="."]
 
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.75
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -9,11 +9,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (position.y < 0):
-		queue_free()
-	
 	var velocity = Vector2.ZERO
-	velocity.y -= 1
+	velocity.y += 1
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -21,11 +18,5 @@ func _process(delta):
 	position += velocity * delta
 
 
-func _on_body_entered(body):
-	if (body.is_in_group("enemies")):
-		body.queue_free()
-		queue_free()
-
-
-func bullet_left_screen():
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

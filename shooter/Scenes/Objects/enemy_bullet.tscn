@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceqyk4mbs5cps"]
+
+[ext_resource type="Texture2D" uid="uid://c13oartfeqyux" path="res://Resources/enemy-bullet.png" id="1_lixky"]
+[ext_resource type="Script" path="res://Scripts/enemy_bullet.gd" id="1_vy528"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vwf5"]
+radius = 8.0
+
+[node name="EnemyBullet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_vy528")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lixky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8vwf5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

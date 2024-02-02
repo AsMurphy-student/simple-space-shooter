@@ -98,3 +98,22 @@ func start(pos):
 
 func _on_shoot_timer_timeout():
 	onCooldown = false
+
+
+func on_enemy_bullet_entered(area):
+	if (area.is_in_group("enemybullets")):
+		area.queue_free()
+		if (health > 1):
+			health = health - 1
+		else:
+		
+	
+			# if (body.name == "test")
+			# if (body.is_in_group("group");
+			# do stuff for figuring out what is what
+	
+			hide() # Player disappears after being hit.
+			hit.emit()
+			# Must be deferred as we can't change physics properties on a physics callback.
+			# Disables collision so signal is only sent once
+			$CollisionShape2D.set_deferred("disabled", true)

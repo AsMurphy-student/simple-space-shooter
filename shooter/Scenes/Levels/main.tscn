@@ -29,5 +29,7 @@ curve = SubResource("Curve2D_8oxi8")
 
 [node name="PlayerBulletContainer" type="Node" parent="."]
 
+[node name="EnemyBulletContainer" type="Node" parent="."]
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="SpawnTimer" to="." method="enemy_timer_finished"]

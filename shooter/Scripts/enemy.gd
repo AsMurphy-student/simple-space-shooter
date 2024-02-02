@@ -9,9 +9,12 @@ var movingLeft = false
 
 var screen_size
 
+@export var playerbullet_scene: PackedScene
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$MoveTimer.start()
+	$ShootTimer.start()
 	screen_size = get_viewport_rect().size
 
 
@@ -42,7 +45,7 @@ func _process(delta):
 		
 	linear_velocity = velocity
 		
-		#position.x += velocity.x * delta
+	#position.x += velocity.x * delta
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -52,28 +55,46 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_move_timer_timeout():
 	$MoveTimer.stop()
-	# if (randi_range(1, 100) < 50):
-	var newPos = randi_range(40, 200)
-	# if (position.x - newPos <= 50):
-	if (position.x < newPos):
-		movingRight = true
-		movingLeft = false
-		moving = true
-		PositionToGo = newPos
+	if (randi_range(1, 100) < 50):
+		var newPos = randi_range(70, 150)
+		if (position.x - newPos <= 50):
+		# if (position.x < newPos):
+			movingRight = true
+			movingLeft = false
+			moving = true
+			PositionToGo = position.x + newPos
+		else:
+			movingRight = false
+			movingLeft = true
+			moving = true
+			PositionToGo = position.x - newPos
 	else:
-		movingRight = false
-		movingLeft = true
-		moving = true
-		PositionToGo = newPos
-	#else:
-		#var newPos = randi_range(10, 50)
-		#if (position.x + newPos >= 200):
-			#movingRight = false
-			#movingLeft = true
-			#moving = true
-			#PositionToGo = position.x - newPos
-		#else:
-			#movingRight = true
-			#movingLeft = false
-			#moving = true
-			#PositionToGo = position.x + newPos
+		var newPos = randi_range(10, 50)
+		if (position.x + newPos >= 200):
+			movingRight = false
+			movingLeft = true
+			moving = true
+			PositionToGo = position.x - newPos
+		else:
+			movingRight = true
+			movingLeft = false
+			moving = true
+			PositionToGo = position.x + newPos
+
+
+func _on_shoot_timer_timeout():
+	var bullet = playerbullet_scene.instantiate()
+	
+	bullet.position = position
+	
+	var velocity = Vector2.ZERO
+	velocity.y += 1
+	
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+	
+	linear_velocity = velocity
+	
+	bullet.add_to_group("enemybullets")
+	
+	get_node("../EnemyBulletContainer").add_child(bullet)
