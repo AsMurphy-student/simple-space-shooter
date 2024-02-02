@@ -117,3 +117,6 @@ func on_enemy_bullet_entered(area):
 			# Must be deferred as we can't change physics properties on a physics callback.
 			# Disables collision so signal is only sent once
 			$CollisionShape2D.set_deferred("disabled", true)
+
+func reset_health():
+	health = 3
