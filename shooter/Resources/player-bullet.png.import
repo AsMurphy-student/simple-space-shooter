@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsxjiorp180vv"
-path="res://.godot/imported/player-bullet.svg-4549df5d50980ecfbbab2cf36b5aa800.ctex"
+uid="uid://b1fd7s32j1lux"
+path="res://.godot/imported/player-bullet.png-c1db186bf9d85ccfbffae50afb094ab7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/player-bullet.svg"
-dest_files=["res://.godot/imported/player-bullet.svg-4549df5d50980ecfbbab2cf36b5aa800.ctex"]
+source_file="res://Resources/player-bullet.png"
+dest_files=["res://.godot/imported/player-bullet.png-c1db186bf9d85ccfbffae50afb094ab7.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
