@@ -7,10 +7,42 @@ signal hit
 
 var health = 3
 
+@export var playerbullet_scene: PackedScene
+
+var timer
+
+var onCooldown = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	timer = get_node("ShootTimer")
 
+func spawnbullet():
+	# Create a new instance of the Mob scene.
+	var bullet = playerbullet_scene.instantiate()
+
+	# Set the mob's direction perpendicular to the path direction.
+	# var direction = -PI / 2
+	
+	# var direction = Vector2.DOWN
+	
+	# Set the mob's position to a random location.
+	bullet.position = position
+
+	# Add some randomness to the direction.
+	# direction += randf_range(-PI / 4, PI / 4)
+	# bullet.rotation = direction
+
+	# Choose the velocity for the mob.
+	# var velocity = Vector2(50.0, 0.0)
+	# bullet.velocity = velocity.rotated(direction)
+	
+	bullet.add_to_group("playerbullets")
+	
+	# Spawn the mob by adding it to the Main scene.
+	# add_child(bullet)
+	get_node("../PlayerBulletContainer").add_child(bullet)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,6 +55,14 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_pressed("fire"):
+		if (!onCooldown):
+			spawnbullet()
+			onCooldown = true
+			timer.start()
+		
+		
+		
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -54,7 +94,7 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-	
-	
-	
-	
+
+
+func _on_shoot_timer_timeout():
+	onCooldown = false
