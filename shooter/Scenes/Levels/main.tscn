@@ -31,5 +31,12 @@ curve = SubResource("Curve2D_8oxi8")
 
 [node name="EnemyBulletContainer" type="Node" parent="."]
 
+[node name="HealthLabel" type="Label" parent="."]
+offset_top = 152.0
+offset_right = 40.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 16
+text = "Health: 3"
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="SpawnTimer" to="." method="enemy_timer_finished"]

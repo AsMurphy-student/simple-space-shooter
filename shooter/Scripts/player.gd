@@ -77,6 +77,8 @@ func _on_body_entered(body):
 		body.queue_free()
 		if (health > 1):
 			health = health - 1
+			var label = "Health: %d"
+			get_node("../HealthLabel").text = label % health
 		else:
 		
 	
@@ -105,6 +107,8 @@ func on_enemy_bullet_entered(area):
 		area.queue_free()
 		if (health > 1):
 			health = health - 1
+			var label = "Health: %d"
+			get_node("../HealthLabel").text = label % health
 		else:
 		
 	
@@ -120,3 +124,5 @@ func on_enemy_bullet_entered(area):
 
 func reset_health():
 	health = 3
+	var label = "Health: %d"
+	get_node("../HealthLabel").text = label % health
