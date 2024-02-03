@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-@export var speed = 50
+@export var speed = 20
+@export var movespeed = 100
 
 var PositionToGo
 var moving = false
@@ -39,9 +40,11 @@ func _process(delta):
 		else: if (movingLeft):
 			velocity.x -= 1
 		
-	velocity.y += 0.5
+	velocity.y += 1
 		
-	velocity = velocity.normalized() * speed
+	velocity = velocity.normalized()
+	velocity.y = velocity.y * speed
+	velocity.x = velocity.x * movespeed
 		
 	linear_velocity = velocity
 		
@@ -98,3 +101,5 @@ func _on_shoot_timer_timeout():
 	bullet.add_to_group("enemybullets")
 	
 	get_node("../EnemyBulletContainer").add_child(bullet)
+	
+	$ShootTimer.wait_time = randf_range(0.5, 1.5)
