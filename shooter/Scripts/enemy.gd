@@ -39,8 +39,8 @@ func _process(delta):
 			velocity.x += 1
 		else: if (movingLeft):
 			velocity.x -= 1
-		
-	velocity.y += 1
+	if (position.y <= 20):
+		velocity.y += 1
 		
 	velocity = velocity.normalized()
 	velocity.y = velocity.y * speed
