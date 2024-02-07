@@ -20,6 +20,10 @@ window/size/viewport_width=320
 window/size/viewport_height=180
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="/home/notsunya/ext-storage/clip.avi"
+
 [input]
 
 move_right={
